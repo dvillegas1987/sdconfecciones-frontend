@@ -1,0 +1,40 @@
+<mat-card>
+    <h4><b>{{ cliente? 'Cliente: '+cliente+' - ' : ''}} Nuevo trabajo</b></h4>
+    <div class="example-container">
+  
+      <form [formGroup]="formTrabajo" (ngSubmit)="formTrabajo.valid" novalidate>
+  
+        <mat-form-field appearance="fill" style="width:100%;">
+          <mat-label>Descripcion</mat-label>
+          <input matInput formControlName="descripcion" [(ngModel)]="trabajo.descripcion" placeholder="Ingrese descripcion">
+          <mat-error *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+            <mat-error  *ngIf="descripcion.errors.required" >Requerido</mat-error>
+          </mat-error>
+          <mat-icon matSuffix>text_fields</mat-icon>
+        </mat-form-field>
+        
+        <br>
+  
+        <mat-form-field appearance="fill" style="width:100%;">
+          <mat-label>Detalle</mat-label>
+          <textarea style="line-height: 40px !important" matInput formControlName="detalle" [(ngModel)]="trabajo.detalle"></textarea>
+          <mat-icon matSuffix>insert_comment</mat-icon>
+        </mat-form-field>
+  
+        <br>
+
+        <mat-form-field appearance="fill" style="width:100%;">
+          <mat-label>Precio</mat-label>
+          <input matInput formControlName="precio" [(ngModel)]="trabajo.precio" placeholder="Ingrese precio">
+          <mat-icon matSuffix>attach_money</mat-icon>
+        </mat-form-field>
+    
+        <br>
+        
+        <button mat-raised-button color="primary" type="submit" [disabled]="!formTrabajo.valid" (click)="edit ? updateTrabajo() : saveTrabajo()">{{edit ? 'Actualizar' : 'Guardar'}}</button>
+  
+      </form>
+  
+    </div>
+  </mat-card>
+  

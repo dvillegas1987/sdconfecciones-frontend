@@ -1,0 +1,39 @@
+<mat-card>
+  <div class="example-container">
+
+    <form [formGroup]="pedidoForm" (ngSubmit)="pedidoForm.valid" novalidate>
+
+      <mat-form-field appearance="fill" style="width:100%;">
+        <mat-label>Cliente</mat-label>
+        <mat-select formControlName="cliente" [(ngModel)]="pedido.cliente">
+          <mat-option *ngFor="let cli of clientes" [value]="cli.codigo">
+            {{cli.razon_social ? cli.razon_social:cli.nombre+', '+cli.apellido}}
+          </mat-option>
+        </mat-select>
+        <mat-icon matSuffix>portrait</mat-icon>
+        <mat-error *ngIf="cliente.invalid && (cliente.dirty || cliente.touched)">
+          <mat-error  *ngIf="cliente.errors.required" >Requerido</mat-error>
+        </mat-error>
+      </mat-form-field>
+  
+      <br>
+
+      <mat-form-field  appearance="fill" style="width:100%;">
+        <mat-label>Forma de pago</mat-label>
+        <mat-select formControlName="forma_pago" [(ngModel)]="pedido.forma_pago">
+          <mat-option *ngFor="let fp of formasPago" [value]="fp.value">
+            {{fp.viewValue}}
+          </mat-option>
+        </mat-select>
+        <mat-icon matSuffix>local_atm</mat-icon>
+        <mat-error *ngIf="forma_pago.invalid && (forma_pago.dirty || forma_pago.touched)">
+          <mat-error  *ngIf="forma_pago.errors.required" >Requerido</mat-error>
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="!pedidoForm.valid" (click)="edit ? updatePedido() : savePedido()">{{edit ? 'Actualizar' : 'Siguiente'}}</button>
+
+    </form>
+
+  </div>
+</mat-card>

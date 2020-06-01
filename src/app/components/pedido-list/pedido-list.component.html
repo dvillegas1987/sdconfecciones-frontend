@@ -1,0 +1,176 @@
+
+    <mat-list style="padding-top: 0px;">
+      <mat-list-item><b>{{titulo}}</b></mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+    <mat-form-field>
+      <mat-label>Realiza tu búsqueda</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Buscar...">
+    </mat-form-field>
+
+    <section>
+      <div class="example-button-row">
+        <button mat-raised-button color="accent" (click)="openDialog()">
+          <mat-icon>
+            add
+          </mat-icon>
+          Pedido
+        </button>
+
+        <button mat-raised-button color="warn" (click)="cancelado()">
+          <mat-icon>
+            cancel
+          </mat-icon>
+        </button>
+
+        <button mat-raised-button style="background:#2abd4c;color:white"  (click)="entregado()">
+          <mat-icon>
+            done
+          </mat-icon>
+        </button>
+
+        <button mat-raised-button color="primary"  (click)="pendiente()">
+          <mat-icon>
+            schedule
+          </mat-icon>
+        </button>
+      </div>
+    </section>
+ 
+
+    <!--<button mat-raised-button color="warn" (click)="deletePedidoSelected()">
+      <mat-icon>
+        delete
+      </mat-icon>
+      Eliminar seleccionados
+    </button>-->
+
+    <div class="example-container">
+      <table style="margin-top: 10px;" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()"
+                          [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)"
+                          [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+          </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+  
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="codigo" >
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 10px;"> F.P. </th>
+          <td mat-cell *matCellDef="let element" style="padding-left: 10px;"> 
+            {{ element.fecha_pedido.substr(3,3) }}{{element.fecha_pedido.substr(8,9) }}
+          </td>
+          <td mat-footer-cell *matFooterCellDef>Total</td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="cliente">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Cliente </th>
+          <td mat-cell *matCellDef="let element"> {{element.cliente}} </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="fecha_pedido">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>F. de pedido </th>
+          <td mat-cell *matCellDef="let element"> {{element.fecha_pedido}} </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="image">
+          <th mat-header-cell *matHeaderCellDef> Imagen </th>
+          <td mat-cell *matCellDef="let element"> {{element.image}} </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+  
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="fecha_entrega">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> F. de entrega </th>
+          <td mat-cell *matCellDef="let element"> {{element.fecha_entrega}} </td>
+          <td mat-footer-cell *matFooterCellDef> Total </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="precio_total">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Subtotal </th>
+          <td mat-cell *matCellDef="let element"> ${{element.precio_total}} </td>
+          <td mat-footer-cell *matFooterCellDef>${{getTotalCost()}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="forma_pago">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Forma de pago </th>
+          <td mat-cell *matCellDef="let element">
+            <mat-chip-list aria-label="Fish selection">
+              <mat-chip *ngIf="element.forma_pago == 2">Crédito</mat-chip>
+              <mat-chip *ngIf="element.forma_pago == 0">Efectivo</mat-chip>
+              <mat-chip *ngIf="element.forma_pago == 1" >Débito</mat-chip>
+            </mat-chip-list>
+          </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+  
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header  str> Estado </th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngIf="element.estado == 0"  matBadge="P" matBadgeOverlap="false"></span>
+            <span *ngIf="element.estado == 1"  matBadgeColor="accent"  matBadge="E" matBadgeOverlap="false"></span>
+            <span *ngIf="element.estado == 2" matBadgeColor="warn" matBadge="C" matBadgeOverlap="false"></span>
+          </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+     
+        <ng-container matColumnDef="accion">
+
+          <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+              <mat-icon color="primary">more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button (click)="editPedido(element.codigo)" mat-menu-item>
+                <mat-icon color="primary">edit</mat-icon>
+                <span>Editar pedido</span>
+              </button>
+              <button (click)="deletePedido(element.codigo)" mat-menu-item>
+                <mat-icon color="primary">delete</mat-icon>
+                <span>Eliminar pedido</span>
+              </button>
+              <button (click)="listaTrabajosPorPedido(element.codigo,element.cliente,element.fecha_entrega,element.fecha_pedido,element.forma_pago)" mat-menu-item>
+                <mat-icon color="primary">list</mat-icon>
+                <span >Lista de tareas</span>
+              </button>
+              <button (click)="nuevoTrabajo(element.codigo,element.cliente)" mat-menu-item>
+                <mat-icon color="primary">add</mat-icon>
+                <span>Nueva tarea</span>
+              </button>
+            </mat-menu>
+          </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+
+        <tr mat-footer-row
+  *matFooterRowDef="displayedTotalColumns; sticky: true">
+</tr>
+      </table>
+     
+    </div>
+  

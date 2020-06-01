@@ -1,0 +1,51 @@
+<mat-tab-group>
+    <mat-tab label="Datos generales">
+
+        <mat-list role="list">
+            <mat-list-item role="listitem"><b>Razon social:</b> {{!cliente.razon_social ? 'sin datos':cliente.razon_social}}</mat-list-item>
+            <mat-list-item role="listitem"><b>Cuil/cuit:</b> {{!cliente.cuit_cuil? 'sin datos':cliente.cuit_cuil}}</mat-list-item>
+            <mat-list-item role="listitem"><b>Dni:</b> {{!cliente.dni? 'sin datos':cliente.dni}}</mat-list-item>
+            <mat-list-item role="listitem"><b>Domicilio:</b> {{!cliente.direccion? 'sin datos':cliente.direccion}}</mat-list-item>
+            <mat-list-item role="listitem"><b>Localidad:</b> {{!cliente.localidad? 'sin datos':cliente.localidad}}</mat-list-item>
+            <mat-list-item role="listitem" ><b>Mail:</b> {{!cliente.correo_electronico? 'sin datos':cliente.correo_electronico}}</mat-list-item>
+        </mat-list>
+    
+    </mat-tab>
+
+    <mat-tab label="Parte superior">
+
+        <mat-list role="list">
+            <mat-list-item role="listitem"><b>Contorno busto: </b> {{!cliente.contorno_busto? '0':cliente.contorno_busto}}cm</mat-list-item>
+            <mat-list-item role="listitem"><b>Lago espalda:</b> {{!cliente.largo_espalda? '0':cliente.largo_espalda}}cm</mat-list-item>
+            <mat-list-item role="listitem"><b>Ancho espalda:</b> {{!cliente.ancho_espalda? '0':cliente.ancho_espalda}}cm</mat-list-item>
+            <mat-list-item role="listitem"><b>Contorno cuello:</b> {{!cliente.contorno_cuello? '0':cliente.contorno_cuello}}cm</mat-list-item>
+            <mat-list-item role="listitem"><b>Ancho hombro:</b> {{!cliente.ancho_hombro? '0':cliente.ancho_hombro}}cm</mat-list-item>
+            <mat-list-item role="listitem"><b>Altura busto:</b> {{!cliente.altura_busto? '0':cliente.altura_busto}}cm</mat-list-item>
+            <mat-list-item role="listitem"><b>Separación busto:</b> {{!cliente.separacion_busto? '0':cliente.separacion_busto}}cm</mat-list-item>
+            <mat-list-item role="listitem"><b>Largo busto:</b> {{!cliente.largo_busto? '0':cliente.largo_busto}}cm</mat-list-item>
+            <mat-list-item role="listitem"><b>Contorno cint. sup.:</b> {{!cliente.contorno_cintura_sup? '0':cliente.contorno_cintura_sup}}cm</mat-list-item>
+        </mat-list>
+       
+    </mat-tab>
+
+    <mat-tab label="Parte inferior">
+        
+        <mat-list role="list">
+            <mat-list-item role="listitem"><b>Altura cadera:</b> {{!cliente.altura_cadera? '0':cliente.altura_cadera}}cm</mat-list-item>
+            <mat-list-item role="listitem"><b>Contorno cadera:</b> {{!cliente.contorno_cadera? '0':cliente.contorno_cadera}}cm</mat-list-item>
+            <mat-list-item role="listitem"><b>Contorno cintura inf:</b> {{!cliente.contorno_cintura_inf? '0':cliente.contorno_cintura_inf}}cm</mat-list-item>
+            <mat-list-item role="listitem"><b>Largo total pierna:</b> {{!cliente.largo_total_pierna? '0':cliente.largo_total_pierna}}cm</mat-list-item>
+            <mat-list-item role="listitem"><b>Rodilla:</b> {{!cliente.rodilla? '0':cliente.rodilla}}cm</mat-list-item>
+            <mat-list-item role="listitem"><b>Bota manga:</b> {{cliente.bota_manga? '0':cliente.bota_manga}}cm</mat-list-item>
+            <mat-list-item role="listitem"><b>Tiro:</b> {{!cliente.tiro? '0':cliente.tiro}}cm</mat-list-item>
+            <mat-list-item role="listitem"><b>Largo manga:</b> {{!cliente.largo_manga? '0':cliente.largo_manga}}cm</mat-list-item>
+            <mat-list-item role="listitem"><b>Puño manga corta:</b> {{!cliente.puno_manga_corta? '0':cliente.puno_manga_corta}}cm</mat-list-item>
+            <mat-list-item role="listitem"><b>Puño manga larga:</b> {{!cliente.puno_manga_larga? '0':cliente.puno_manga_larga}}cm</mat-list-item>
+            <mat-list-item role="listitem"><b>Contorno sisa:</b> {{!cliente.contorno_sisa? '0':cliente.contorno_sisa}}cm</mat-list-item>
+        </mat-list>
+
+    </mat-tab>
+</mat-tab-group>
+
+
+

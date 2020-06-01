@@ -1,0 +1,213 @@
+
+    <div class="example-container">
+      <h3>ALTA CLIENTE</h3>
+      <form [formGroup]="formCliente" (ngSubmit)="formCliente.valid" novalidate>
+       
+        <mat-form-field appearance="fill">
+          <mat-label>Razon Social</mat-label>
+          <input matInput formControlName="razon_social" [(ngModel)]="cliente.razon_social" placeholder="Ingrese razon social">
+          <mat-icon matSuffix>perm_identity</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" [(ngModel)]="cliente.nombre" placeholder="Ingrese nombre">
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+            <mat-error  *ngIf="nombre.errors.required" >Requerido</mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Apellido</mat-label>
+            <input matInput formControlName="apellido" [(ngModel)]="cliente.apellido" placeholder="Ingrese apellido">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+              <mat-error  *ngIf="apellido.errors.required" >Requerido</mat-error>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Cuit/Cuil</mat-label>
+            <input matInput formControlName="cuit_cuil" [(ngModel)]="cliente.cuit_cuil" placeholder="Ingrese cuit/cuil">
+            <mat-icon matSuffix>dialpad</mat-icon>
+            <mat-error *ngIf="cuit_cuil.invalid && (cuit_cuil.dirty || cuit_cuil.touched)">
+              <mat-error  *ngIf="cuit_cuil.errors.required" >Requerido</mat-error>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Dni</mat-label>
+            <input matInput formControlName="dni" [(ngModel)]="cliente.dni" placeholder="Ingrese dni">
+            <mat-icon matSuffix>dialpad</mat-icon>
+            <mat-error *ngIf="dni.invalid && (dni.dirty || dni.touched)">
+              <mat-error  *ngIf="dni.errors.required" >Requerido</mat-error>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Telefono</mat-label>
+            <input matInput formControlName="telefono" [(ngModel)]="cliente.telefono" placeholder="Ingrese telefono">
+            <mat-icon matSuffix>contact_phone</mat-icon>
+            <mat-error *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
+              <mat-error  *ngIf="telefono.errors.required" >Requerido</mat-error>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Dirección</mat-label>
+            <input matInput formControlName="direccion" [(ngModel)]="cliente.direccion" placeholder="Ingrese Dirección">
+            <mat-icon matSuffix>house</mat-icon>
+            <mat-error *ngIf="direccion.invalid && (direccion.dirty || direccion.touched)">
+              <mat-error  *ngIf="direccion.errors.required" >Requerido</mat-error>
+            </mat-error>
+          </mat-form-field>
+      
+          <mat-form-field appearance="fill">
+            <mat-label>Correo electrónico</mat-label>
+            <input matInput formControlName="correo_electronico" [(ngModel)]="cliente.correo_electronico" placeholder="Ingrese correo electrónico">
+            <mat-icon matSuffix>contact_mail</mat-icon>
+        </mat-form-field>
+      
+          <mat-form-field  appearance="fill">
+            <mat-label>Localidad</mat-label>
+            <mat-select formControlName="localidad" [(ngModel)]="cliente.localidad">
+              <mat-option *ngFor="let localidad of localidades" [value]="localidad.valor">
+                {{localidad.descripcion}}
+              </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>location_on</mat-icon>
+          </mat-form-field>
+
+          <br>
+
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <b>Parte superior</b>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              
+                <div class="example-container">
+                    <mat-form-field appearance="fill" >
+                        <mat-label>Contorno busto</mat-label>
+                        <input matInput formControlName="contorno_busto" [(ngModel)]="cliente.contorno_busto" placeholder="Ingrese contorno busto">
+                        <mat-icon matSuffix>straighten</mat-icon>
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="fill" >
+                        <mat-label>	Largo espalda</mat-label>
+                        <input matInput formControlName="largo_espalda" [(ngModel)]="cliente.largo_espalda" placeholder="Ingrese largo espalda">
+                        <mat-icon matSuffix>straighten</mat-icon>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" >
+                        <mat-label>	Ancho espalda</mat-label>
+                        <input matInput formControlName="ancho_espalda" [(ngModel)]="cliente.ancho_espalda" placeholder="Ingrese ancho espalda">
+                        <mat-icon matSuffix>straighten</mat-icon>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" >
+                        <mat-label>Contorno cuello</mat-label>
+                        <input matInput formControlName="contorno_cuello" [(ngModel)]="cliente.contorno_cuello" placeholder="Ingrese contorno cuello">
+                        <mat-icon matSuffix>straighten</mat-icon>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" >
+                        <mat-label>Ancho hombro</mat-label>
+                        <input matInput formControlName="ancho_hombro" [(ngModel)]="cliente.ancho_hombro" placeholder="Ingrese ancho hombro">
+                        <mat-icon matSuffix>straighten</mat-icon>
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="fill" >
+                        <mat-label>Altura busto</mat-label>
+                        <input matInput formControlName="altura_busto" [(ngModel)]="cliente.altura_busto" placeholder="Ingrese altura busto">
+                        <mat-icon matSuffix>straighten</mat-icon>
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="fill" >
+                        <mat-label>Separación busto</mat-label>
+                        <input matInput formControlName="separacion_busto" [(ngModel)]="cliente.separacion_busto" placeholder="Ingrese separación busto">
+                        <mat-icon matSuffix>straighten</mat-icon>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" >
+                        <mat-label>Largo busto</mat-label>
+                        <input matInput formControlName="largo_busto" [(ngModel)]="cliente.largo_busto" placeholder="Ingrese largo busto">
+                        <mat-icon matSuffix>straighten</mat-icon>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" >
+                        <mat-label>Contorno cintura sup</mat-label>
+                        <input matInput formControlName="contorno_cintura_sup" [(ngModel)]="cliente.contorno_cintura_sup" placeholder="Ingrese contorno cintura sup">
+                        <mat-icon matSuffix>straighten</mat-icon>
+                    </mat-form-field>
+                </div>
+        
+            </mat-expansion-panel>
+            <br>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <b>Parte inferior</b>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+          
+                <mat-form-field appearance="fill" >
+                    <mat-label>Altura cadera</mat-label>
+                    <input matInput formControlName="altura_cadera" [(ngModel)]="cliente.altura_cadera" placeholder="Ingrese altura cadera">
+                    <mat-icon matSuffix>straighten</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" >
+                    <mat-label>Contorno cadera</mat-label>
+                    <input matInput formControlName="contorno_cadera" [(ngModel)]="cliente.contorno_cadera" placeholder="Ingrese contorno cadera">
+                    <mat-icon matSuffix>straighten</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" >
+                    <mat-label>Contorno cintura inf</mat-label>
+                    <input matInput formControlName="contorno_cintura_inf" [(ngModel)]="cliente.contorno_cintura_inf" placeholder="Ingrese contorno cintura inf">
+                    <mat-icon matSuffix>straighten</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" >
+                    <mat-label>Largo total pierna</mat-label>
+                    <input matInput formControlName="largo_total_pierna" [(ngModel)]="cliente.largo_total_pierna" placeholder="Ingrese largo total pierna">
+                    <mat-icon matSuffix>straighten</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" >
+                    <mat-label>Rodilla</mat-label>
+                    <input matInput formControlName="rodilla" [(ngModel)]="cliente.rodilla" placeholder="Ingrese rodilla">
+                    <mat-icon matSuffix>straighten</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" >
+                    <mat-label>Tiro</mat-label>
+                    <input matInput formControlName="tiro" [(ngModel)]="cliente.tiro" placeholder="Ingrese tiro">
+                    <mat-icon matSuffix>straighten</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" >
+                    <mat-label>Largo manga</mat-label>
+                    <input matInput formControlName="largo_manga" [(ngModel)]="cliente.largo_manga" placeholder="Ingrese largo manga">
+                    <mat-icon matSuffix>straighten</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" >
+                    <mat-label>Puño manga corta</mat-label>
+                    <input matInput formControlName="puno_manga_corta" [(ngModel)]="cliente.puno_manga_corta" placeholder="Ingrese puño manga corta">
+                    <mat-icon matSuffix>straighten</mat-icon>
+                </mat-form-field>
+        
+            </mat-expansion-panel>
+          </mat-accordion>
+
+        
+        <button mat-raised-button color="primary" type="submit" [disabled]="!formCliente.valid" (click)="edit ? updateCliente() : saveCliente()">{{edit ? 'Actualizar' : 'Guardar'}}</button>
+  
+      </form>
+  
+    </div>

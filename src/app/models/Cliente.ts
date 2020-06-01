@@ -1,0 +1,33 @@
+export interface Cliente{
+    codigo?:number;
+    razon_social?:string;
+    nombre?:string;
+    apellido?:string;
+    cuit_cuil?:string;
+    dni?:string;
+    telefono?:string;
+    direccion?:string;
+    correo_electronico?:string;
+    localidad?:number;
+    contorno_busto?:string;
+    largo_espalda?:string;
+    ancho_espalda?:string;
+    contorno_cuello?:string;
+    ancho_hombro?:string;
+    altura_busto?:string;
+    separacion_busto?:string;
+    largo_busto?:string;
+    contorno_cintura_sup?:string;
+    altura_cadera?:string;
+    contorno_cadera?:string;
+    contorno_cintura_inf?:string;
+    largo_total_pierna?:string;
+    rodilla?:string;
+    bota_manga?:string;
+    tiro?:string;
+    largo_manga?:string;
+    puno_manga_corta?:string;
+    puno_manga_larga?:string;
+    contorno_sisa?:string;
+
+}

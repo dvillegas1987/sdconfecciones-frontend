@@ -1,0 +1,35 @@
+table {
+    width: 100%;
+}
+tr.mat-footer-row {
+  font-weight: bold;
+}
+.example-container {
+    height: 400px;
+    overflow: auto;
+  }
+
+  tr.mat-footer-row {
+    font-weight: bold;
+  }
+
+.example-button-row {
+    display: table-cell;
+  }
+  
+  .example-button-row button {
+    display: table-cell;
+    margin-right: 8px;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    width: 480px;
+  }
+  
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 120px;
+  }

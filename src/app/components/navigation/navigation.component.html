@@ -1,0 +1,10 @@
+<mat-toolbar color="primary" class="mat-elevation-z10">
+    <mat-toolbar-row>
+        <span> SD-Confecciones</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+<nav mat-tab-nav-bar [backgroundColor]="background">
+    <a mat-tab-link *ngFor="let link of links"
+        (click)="activeLink = link.label"
+        [active]="activeLink == link.label" routerLink="{{ link.location }}"> {{link.label}} </a>
+</nav>

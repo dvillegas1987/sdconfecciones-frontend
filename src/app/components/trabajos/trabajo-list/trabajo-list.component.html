@@ -1,0 +1,70 @@
+
+     <!-- <table style="margin-top: 10px;width:100%;" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="codigo">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef > Descripcion </th>
+          <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="detalle">
+          <th mat-header-cell *matHeaderCellDef>Detalle </th>
+          <td mat-cell *matCellDef="let element"> {{element.detalle}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="precio">
+          <th mat-header-cell *matHeaderCellDef> Precio </th>
+          <td mat-cell *matCellDef="let element"> {{element.precio}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="accion">
+          <th mat-header-cell *matHeaderCellDef> Accion </th>
+          <td mat-cell *matCellDef="let element">
+            <button (click)="editTrabajo(element.codigo)" mat-icon-button color="primary" aria-label="Example icon button with a menu icon">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button (click)="deleteTrabajo(element.codigo)" mat-icon-button color="warn" aria-label="Example icon button with a menu icon">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>-->
+      
+      <mat-list>
+        <mat-list-item><b style="padding-right: 10px;">CLIENTE:</b> {{cli}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><h5><b>Forma de pago: </b>{{fp}} - <b> F. Pedido: </b> {{fpe}} - <b> F. Entrega: </b> {{fen}}</h5></mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><b>TAREAS: </b></mat-list-item>
+      </mat-list>
+      <mat-divider></mat-divider>
+      <mat-accordion class="example-headers-align">
+        <mat-expansion-panel *ngFor="let t of trabajos" [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+          <mat-expansion-panel-header>
+           
+                <b>{{t.descripcion}} - ${{t.precio}}</b>
+         
+
+          </mat-expansion-panel-header>
+          <p style="padding-top: 5px;">
+            {{t.detalle}}
+          </p>
+          <mat-action-row>
+            <button (click)="editTrabajo(t.codigo)"  mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button (click)="deleteTrabajo(t.codigo)"  mat-mini-fab color="warn" aria-label="Example icon button with a menu icon">
+                <mat-icon>delete</mat-icon>
+            </button>
+          </mat-action-row>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+  
